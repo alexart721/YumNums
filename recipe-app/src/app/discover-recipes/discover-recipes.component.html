@@ -1,0 +1,21 @@
+
+<div>
+  <H2></H2>
+  <app-search-bar [list]="ingredientList"></app-search-bar>
+
+  <div *ngIf="list">
+    <div *ngFor="let ingredient of list">
+      <div (click)="removeItem(ingredient)">{{ingredient.strIngredient}}</div>
+    </div>
+  </div>
+  
+  <button class="searchRecipes">Search Recipes</button>
+
+  <div *ngFor="let ingredient of filteredIngredients" class="container">
+      <div class>
+        <button (click)="addItem(ingredient)">{{ingredient.strIngredient}}</button> 
+        <div class='card'></div>
+      </div>
+  </div>
+
+</div>
