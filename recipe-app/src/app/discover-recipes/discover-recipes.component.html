@@ -1,6 +1,6 @@
 
 <div>
-  <H2></H2>
+  <H2>Dash-Board</H2>
   <app-search-bar [list]="ingredientList"></app-search-bar>
 
   <div *ngIf="list">
@@ -9,7 +9,9 @@
     </div>
   </div>
   
-  <button class="searchRecipes">Search Recipes</button>
+  <a routerLink="/recipeOptions/">
+    <button class="searchRecipes" (click)="searchRecipes()">Search Recipes</button>
+  </a>
 
   <div *ngFor="let ingredient of filteredIngredients" class="container">
       <div class>

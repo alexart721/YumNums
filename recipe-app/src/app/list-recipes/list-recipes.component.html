@@ -1,1 +1,25 @@
-<p>list-recipes works!</p>
+<div *ngIf="recipeOptions">
+  <div *ngFor="let recipe of recipeOptions">
+
+    <div class="recipeList">
+
+      <div class="recipeInfo">
+        <span>{{recipe.name}}</span>
+        <span>{{recipe.area}}</span>
+
+        <span>Ingredients Still Needed</span>
+        <div *ngIf="ingredientsNeeded" class="ingredientsNeeded">
+          <div *ngFor="ingredient of ingredientsNeeded">
+            <span>{{ingredient && ingredient.strIngredient}}</span>
+          </div>
+          
+        </div>
+      </div>
+
+      <button (click)="removeRecipe(recipe)">No</button>
+      <button (click)="viewRecipe(recipe)">Yes</button>
+    </div>
+    
+    
+  </div>
+</div>

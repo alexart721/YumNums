@@ -2,6 +2,7 @@ export interface IRecipe {
   id: string;
   name: string;
   area: string;
+  category: string;
   instructions: string;
   thumbNail: string;
   youtube: string;
@@ -13,6 +14,7 @@ export class Recipe implements IRecipe {
   id: string;
   name: string;
   area: string;
+  category: string;
   instructions: string;
   thumbNail: string;
   youtube: string;
@@ -21,6 +23,7 @@ export class Recipe implements IRecipe {
     this.id = '';
     this.name = '';
     this.area = '';
+    this.category = '';
     this.instructions = '';
     this.thumbNail = '';
     this.youtube = '';
@@ -30,6 +33,7 @@ export class Recipe implements IRecipe {
     this.id = data.idMeal;
     this.name = data.strMeal;
     this.area = data.strArea;
+    this.category = data.strCategory;
     this.instructions = data.strInstructions;
     this.thumbNail = data.strMealThumb;
     this.youtube = data.strYoutube;

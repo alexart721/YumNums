@@ -1,1 +1,4 @@
-<p>recipe-page works!</p>
+<div *ngIf="recipeInfo">
+  <h2 class="recipeName">{{recipeInfo.name}}</h2>
+  <span class="area">{{recipeInfo.area}}</span><span class="category">{{recipeInfo.category}}</span>
+</div>

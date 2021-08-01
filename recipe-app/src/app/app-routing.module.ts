@@ -9,7 +9,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 
 const routes: Routes = [
   //need to make a path thats dependent soley upon 'what' parameter it is the user is trying to search by 
-  { path: '', component: DiscoverRecipesComponent },
+  { path: '', component: DashboardComponent},
+  { path: 'homepage/', component: HomepageComponent },
+  { path: 'discoverRecipes/', component: DiscoverRecipesComponent },
+  { path: 'recipeOptions', component: ListRecipesComponent},
+  { path: 'recipeInformation/', component: RecipePageComponent},
   
 ];
 

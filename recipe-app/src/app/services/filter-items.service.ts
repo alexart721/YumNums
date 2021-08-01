@@ -7,7 +7,7 @@ import { ApiService } from './listApi.service';
   providedIn: 'root'
 })
 export class FilterItemsService {
-  ingredientList: Ingredient[] = [];
+  //ingredientList: Ingredient[] = [];
   private _items: Ingredient[] = [];
   public current$ = new BehaviorSubject<Ingredient[]>([]);
 
@@ -15,7 +15,10 @@ export class FilterItemsService {
 
   filterItems(query: string, list: Ingredient[]) {
     console.log(list, "inside filtering items service");
-    return this.current$.next(list.filter((item) => item.strIngredient.includes(query)));
+    return this.current$.next(list.filter((item) =>  {
+      
+      item.strIngredient.toLowerCase().includes(query.toLowerCase())
+    }));
   }
 
   refetchIngredients() {

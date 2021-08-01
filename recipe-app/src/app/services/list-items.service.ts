@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Ingredient } from '../infoObj';
+import { Recipe } from '../recipeObj';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListItemsService {
-  private list: Ingredient[] = [];
-  list$ = new BehaviorSubject(this.list);
+  private ingredientslist: Ingredient[] = [];
+  ingredientslist$ = new BehaviorSubject(this.ingredientslist);
+
+  private recipeList: Recipe[] = [];
+  recipeList$ = new BehaviorSubject(this.recipeList);
 
   constructor() { }
 
-  addItemToList(item: Ingredient): void {
-    console.log(item);
-    
-    this.list.push(item);
-    this.list$.next(this.list);
-    console.log(this.list, "add 2 list");
-    
+  addItemToList(item: Ingredient): void {  
+    this.ingredientslist.push(item);
+    this.ingredientslist$.next(this.ingredientslist);
   }
 
   removeItemFromList(item: Ingredient): void {
-    this.list = this.list.filter((element) => element !== item);
-    this.list$.next(this.list);
+    this.ingredientslist = this.ingredientslist.filter((element) => element !== item);
+    this.ingredientslist$.next(this.ingredientslist);
   }
 
+
+
+  removeRecipeFromList(item: Recipe): void {
+    this.recipeList = this.recipeList.filter((element) => element !== item);
+    this.recipeList$.next(this.recipeList);
+  }
 }

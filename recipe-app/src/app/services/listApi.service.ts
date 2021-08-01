@@ -6,19 +6,6 @@ import { map } from 'rxjs/operators';
 
 import { Meals, Ingredient } from '../infoObj';
 
-const options = {
-  method: 'GET',
-  url: 'https://themealdb.p.rapidapi.com/list.php',
-  params: { i: 'list' },
-  headers: {
-    'x-rapidapi-key': '543c8e8f2cmshd8512899ea3d414p1d2174jsn55909a1fca06',
-    'x-rapidapi-host': 'themealdb.p.rapidapi.com',
-  }
-};
-const headers = new HttpHeaders({'x-rapidapi-key': '543c8e8f2cmshd8512899ea3d414p1d2174jsn55909a1fca06', 'x-rapidapi-host': 'themealdb.p.rapidapi.com'});
-
-let params = new HttpParams();
-params.append('i', 'list');
 
 //{ headers: headers, params }
 
@@ -38,7 +25,6 @@ export class ApiService {
   listIngredients(): Observable<Ingredient[]> {
     
     return this.http.get<Meals>(`${this.baseUrl}list.php?i=list`).pipe(map(data  => {
-      console.log(data);
 
       for (let i:number = 0; i < data.meals.length; i++) {
         this.ingredientList.push(data.meals[i]);

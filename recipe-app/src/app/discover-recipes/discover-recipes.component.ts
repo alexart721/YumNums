@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilterItemsService } from '../services/filter-items.service';
 import { ApiService } from '../services/listApi.service';
@@ -7,14 +7,19 @@ import { ListItemsService } from '../services/list-items.service';
 
 @Component({
   selector: 'app-discover-recipes',
-  templateUrl: './discover-recipes.component.html',
+  templateUrl:  './discover-recipes.component.html',
   styleUrls: ['./discover-recipes.component.css']
 })
+//`<app-list-recipes [ingredientsList]="ingredientsList"></app-list-recipes>`
 export class DiscoverRecipesComponent implements OnInit, OnDestroy {
   ingredient?: Ingredient;
   ingredientList: Ingredient[] = [];
   filteredIngredients: Ingredient[] = [];
   list: Ingredient[] = [];
+  ingredientsList: Ingredient[] = [];
+
+  //still not sure if i need this @outout or not
+  @Output() recipeSearchEvent = new EventEmitter<Ingredient[]>();
 
   constructor(
     private apiService: ApiService,
@@ -36,9 +41,10 @@ export class DiscoverRecipesComponent implements OnInit, OnDestroy {
         this.filteringItems.filterItems(nameSearch, this.list);
       });
     
-    this.listItems.list$
+    this.listItems.ingredientslist$
     .subscribe((data: Ingredient[]) => {
       this.list = data;
+      this.ingredientsList = data;
     })
   }
 
@@ -58,6 +64,12 @@ export class DiscoverRecipesComponent implements OnInit, OnDestroy {
     this.listItems.removeItemFromList(item);
   }
 
+  //not sure if i need this or not
+  searchRecipes(): void {
+    console.log(this.list);
+    
+    this.recipeSearchEvent.emit(this.list);
+  }
 
   ngOnDestroy() {
     this.filteringItems.current$.unsubscribe();  
